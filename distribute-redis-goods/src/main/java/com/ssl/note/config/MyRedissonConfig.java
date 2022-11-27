@@ -1,7 +1,6 @@
 package com.ssl.note.config;
 
 import org.redisson.Redisson;
-import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2022/11/27 10:35
  * @description
  */
-//@Configuration
+@Configuration
 public class MyRedissonConfig {
     @Value("${redis.host}")
     private String host;
@@ -40,14 +39,16 @@ public class MyRedissonConfig {
 
 
     @Bean(destroyMethod = "shutdown")
-    public RedissonClient redisson() {
+    public Redisson redisson() {
         Config config = new Config();
+
         config.useSingleServer()
-                .setAddress("redis://101.201.154.144:6379")
+                .setAddress("redis://" + host + ":" + port)
                 .setPassword(password)
+                .setDatabase(2)
         ;
-        // m1芯片会报错
-        return Redisson.create(config);
+
+        return (Redisson) Redisson.create(config);
     }
 
 
