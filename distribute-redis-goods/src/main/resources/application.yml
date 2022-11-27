@@ -1,0 +1,36 @@
+server:
+  port: 8083
+
+spring:
+  thymeleaf:
+    cache: false
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rm-2zep5730lmk5s5dy37o.mysql.rds.aliyuncs.com:3306/note-redis-distribute?characterEncoding=UTF8&autoReconnect=true&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: root
+    password: Ssl@199502
+
+mybatis:
+  type-aliases-package: com.ssl.note.model
+  mapper-locations: classpath:mapper/*.xml
+
+redis:
+  host: 101.201.154.144
+  port: 6379
+  password: Ssl@134679
+  timeout: 30000
+  maxTotal: 30
+  maxIdle: 10
+  numTestsPerEvictionRun: 1024
+  timeBetweenEvictionRunsMillis: 30000
+  minEvictableIdleTimeMillis: 1800000
+  softMinEvictableIdleTimeMillis: 10000
+  maxWaitMillis: 1500
+  testOnBorrow: true
+  testWhileIdle: true
+  blockWhenExhausted: false
+  JmxEnabled: true

@@ -1,0 +1,11 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: distribute-redis1
+  redis:
+    host: 101.201.154.144
+    port: 6379
+    password: Ssl@134679
+    database: 1
